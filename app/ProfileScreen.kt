@@ -1,4 +1,4 @@
-package com.example.dilaproject
+package com.example.dilaproject.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
