@@ -66,7 +66,7 @@ fun HomeScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Welcome to PearlPals",
+                text = "Unlock Your Beauty",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -97,12 +97,15 @@ fun HomeScreen(navController: NavController) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SkincareScreen(navController: NavController) {
-    val skincareItems = listOf(
-        "Cleansing",
+    var skincareItems = mutableListOf(
+        "Cleansing Oil",
+        "Facial Wash",
         "Toner",
+        "Essence",
         "Serum",
         "Moisturizer",
-        "Sunscreen"
+        "Sunscreen",
+        "Lip Balm"
     )
 
     Scaffold(

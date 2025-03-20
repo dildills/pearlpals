@@ -16,12 +16,13 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SkincareScreen(navController: NavController) {
-    val skincareItems = listOf(
+    var skincareItems = MutableListOf (
         "Cleansing",
         "Toner",
         "Serum",
         "Moisturizer",
-        "Sunscreen"
+        "Sunscreen",
+        "mask"
     )
 
     Scaffold(
