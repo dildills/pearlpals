@@ -23,6 +23,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import com.example.dilaproject.ui.theme.DilaProjectTheme
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +55,6 @@ fun PearlpalsApp() {
     }
 }
 
-// Semua screen dalam satu file untuk mengatasi masalah referensi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,15 +106,47 @@ fun HomeScreen(navController: NavController) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SkincareScreen(navController: NavController) {
-    var skincareItems = mutableListOf(
-        "Cleansing Oil",
-        "Facial Wash",
-        "Toner",
-        "Essence",
-        "Serum",
-        "Moisturizer",
-        "Sunscreen",
-        "Lip Balm"
+    val skincareItems = listOf(
+        SkincareItem(
+            name = "Cleansing Oil",
+            description = "Membersihkan makeup dan kotoran pada wajah. Gunakan pada wajah kering dan pijat lembut sebelum dibilas.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Facial Wash",
+            description = "Membersihkan sisa minyak dan kotoran. Gunakan dengan air hangat dan pijat dengan gerakan melingkar.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Toner",
+            description = "Menyeimbangkan pH kulit dan menenangkan wajah. Aplikasikan dengan kapas atau tepuk langsung dengan telapak tangan.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Essence",
+            description = "Memberikan hidrasi awal dan membantu produk lain meresap lebih baik. Tepuk ringan hingga meresap.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Serum",
+            description = "Menargetkan masalah kulit spesifik seperti jerawat atau kerutan. Gunakan 2-3 tetes dan tepuk hingga meresap.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Moisturizer",
+            description = "Mengunci kelembapan dan nutrisi pada kulit. Oleskan dengan gerakan ke atas dan ke luar pada wajah dan leher.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Sunscreen",
+            description = "Melindungi kulit dari sinar UV. Aplikasikan setiap pagi dan ulangi setiap 2-3 jam jika beraktivitas di luar.",
+            imageRes = R.drawable.sonny11
+        ),
+        SkincareItem(
+            name = "Lip Balm",
+            description = "Menjaga bibir tetap lembab dan mencegah kekeringan. Gunakan secara rutin terutama sebelum tidur.",
+            imageRes = R.drawable.sonny11
+        )
     )
 
     Scaffold(
@@ -116,7 +157,11 @@ fun SkincareScreen(navController: NavController) {
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
             )
         }
     ) { paddingValues ->
@@ -128,33 +173,57 @@ fun SkincareScreen(navController: NavController) {
         ) {
             Text(
                 text = "Daily Skincare Steps",
-                fontSize = 20.sp,
+                fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 16.dp),
+                color = MaterialTheme.colorScheme.primary
             )
 
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(skincareItems) { item ->
                     ElevatedCard(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateContentSize(),
+                        elevation = CardDefaults.elevatedCardElevation(
+                            defaultElevation = 4.dp
+                        )
                     ) {
-                        Column(
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp)
+                                .height(IntrinsicSize.Min)
                         ) {
-                            Text(
-                                text = item,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
+                            Image(
+                                painter = painterResource(id = item.imageRes),
+                                contentDescription = item.name,
+                                modifier = Modifier
+                                    .width(120.dp)
+                                    .height(140.dp)
+                                    .clip(RoundedCornerShape(topStart = 12.dp, bottomStart = 12.dp)),
+                                contentScale = ContentScale.Crop
                             )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = "Recommended products and steps for $item routine",
-                                fontSize = 14.sp
-                            )
+
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(16.dp)
+                            ) {
+                                Text(
+                                    text = "${skincareItems.indexOf(item) + 1}. ${item.name}",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 18.sp,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = item.description,
+                                    fontSize = 14.sp,
+                                    lineHeight = 20.sp
+                                )
+                            }
                         }
                     }
                 }
@@ -162,6 +231,13 @@ fun SkincareScreen(navController: NavController) {
         }
     }
 }
+
+// Kelas data untuk menyimpan informasi skincare item
+data class SkincareItem(
+    val name: String,
+    val description: String,
+    val imageRes: Int
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
