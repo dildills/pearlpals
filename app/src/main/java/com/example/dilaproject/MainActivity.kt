@@ -110,42 +110,42 @@ fun SkincareScreen(navController: NavController) {
         SkincareItem(
             name = "Cleansing Oil",
             description = "Membersihkan makeup dan kotoran pada wajah. Gunakan pada wajah kering dan pijat lembut sebelum dibilas.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.cleansingoil
         ),
         SkincareItem(
             name = "Facial Wash",
             description = "Membersihkan sisa minyak dan kotoran. Gunakan dengan air hangat dan pijat dengan gerakan melingkar.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.facialwash
         ),
         SkincareItem(
             name = "Toner",
             description = "Menyeimbangkan pH kulit dan menenangkan wajah. Aplikasikan dengan kapas atau tepuk langsung dengan telapak tangan.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.toner
         ),
         SkincareItem(
             name = "Essence",
             description = "Memberikan hidrasi awal dan membantu produk lain meresap lebih baik. Tepuk ringan hingga meresap.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.essences
         ),
         SkincareItem(
             name = "Serum",
             description = "Menargetkan masalah kulit spesifik seperti jerawat atau kerutan. Gunakan 2-3 tetes dan tepuk hingga meresap.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.serum
         ),
         SkincareItem(
             name = "Moisturizer",
             description = "Mengunci kelembapan dan nutrisi pada kulit. Oleskan dengan gerakan ke atas dan ke luar pada wajah dan leher.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.moisturizer
         ),
         SkincareItem(
             name = "Sunscreen",
             description = "Melindungi kulit dari sinar UV. Aplikasikan setiap pagi dan ulangi setiap 2-3 jam jika beraktivitas di luar.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.sunscreen
         ),
         SkincareItem(
             name = "Lip Balm",
             description = "Menjaga bibir tetap lembab dan mencegah kekeringan. Gunakan secara rutin terutama sebelum tidur.",
-            imageRes = R.drawable.sonny11
+            imageRes = R.drawable.lipbalm
         )
     )
 
